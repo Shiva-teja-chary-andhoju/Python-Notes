@@ -180,7 +180,6 @@ help(datetime.date)
 
 👉 Install third-party libraries via [PyPI](https://pypi.org/):
 
-pip install pandas
 
 
 ---
