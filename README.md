@@ -84,7 +84,9 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
      pip install ipykernel
      ```
    - Open a folder: File > Open Folder (pick your project folder).
-   - Pick Python: Ctrl+Shift+P, type "Python: Select Interpreter", Choose the interpreter from your virtual environment `./myenv/Scripts/python.exe`.
+   - Pick Python: Ctrl+Shift+P, type "Python: Select Interpreter".Lets you choose which Python environment (global or virtual) to use.If you've activated a virtual environment (like .venv), it will appear in the list.
+   - When you open a .ipynb file in VS Code, you'll see a kernel selector at the top right.Click it to choose the Python environment (kernel) for that notebook.
+   - Choose the interpreter from your virtual environment `./myenv/Scripts/python.exe`.
    - Test: Create a new `.py` or `.ipynb` file. Write in `test.py`:
      ```python
      print("Hello from VS Code!")
