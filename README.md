@@ -42,6 +42,10 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
      ```
      python -m venv myenv
      ```
+     or
+     ```
+     py -3.9 -m venv myenv
+     ```
      This makes a "myenv" folder.
    - Activate it:
      ```
@@ -55,18 +59,30 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
      ```
      pip install jupyter
      ```
+     ```
+     pip install jupyterlab
+     ```
    - Start it:
      ```
      jupyter notebook
      ```
+     ```
+     jupyter lab
+     ```
      Browser opens. Click "New > Python 3" for a notebook. Test: Type `print("Hi!")` in a cell, hit Shift+Enter.
+   - In jupyter notebook `view tab` > `open in jupyter lab` to open the notebook in jupyter lab
    - Close: Ctrl+C in cmd, then "y".
+   - [Interface tutorial](https://www.youtube.com/watch?v=uclhm_l1cSc)
  
 4. **Install VS Code**
    - Download from [code.visualstudio.com](https://code.visualstudio.com/). Run .exe, install.
    - Open VS Code. Go to Extensions (Ctrl+Shift+X).
    - Search "Python" (by Microsoft)—install.
    - Search "Jupyter" (by Microsoft)—install.
+   - Install [ipykernel](https://pypi.org/project/ipykernel/) in VScode using command prompt
+     ```
+     pip install ipykernel
+     ```
    - Open a folder: File > Open Folder (pick your project folder).
    - Pick Python: Ctrl+Shift+P, type "Python: Select Interpreter", Choose the interpreter from your virtual environment `./myenv/Scripts/python.exe`.
    - Test: Create a new `.py` or `.ipynb` file. Write in `test.py`:
@@ -76,7 +92,7 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
      Right-click > "Run Python File in Terminal". Works?
  
 5. **Install, Update, Check, and Secure Libraries/Modules**
-   - **Install Libraries**: With venv active, use `pip` to add libraries from PyPI (e.g., pandas for data, requests for web):
+   - **Install Libraries**: With venv active, use [pip](https://pypi.org/project/pip/) to add libraries from PyPI (e.g., pandas for data, requests for web):
      ```
      pip install pandas requests
      ```
