@@ -295,10 +295,6 @@ pip list
 python -m venv data_env
 source data_env/bin/activate # On Windows: data_env\Scripts\activate
  
-# Using conda (recommended for data science)
-conda create -n data_analytics python=3.11
-conda activate data_analytics
-conda install numpy pandas matplotlib seaborn jupyter
 ```
  
 ---
