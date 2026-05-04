@@ -49,12 +49,27 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
      This makes a "myenv" folder.
    - Activate it:
      ```
-     myenv\Scripts\activate
+     cd myenv\Scripts
+     ```
+
+     ```
+     myenv\Scripts>activate
      ```
      Prompt shows "(myenv)"? Activated!
-   - Tip: Create a new venv for each project. Deactivate with `deactivate`.
+   - Tip: Create a new venv for each project. Deactivate with `deactivate`. dosen't matter from where you run.
+     ```
+     deactivate
+     ``` 
+     or
+     ```
+     cd ../..
+     ```
+     ```
+     deactivate
+     ```
  
-3. **Install Jupyter Notebook**
+3. **Install Jupyter Notebook** 
+   - Activate the virtual environment first, then install libraries from any folder path in the command prompt.If the venv is activated, pip installs inside that venv, regardless of folder path you are in
    - With venv active, type:
      ```
      pip install jupyter
@@ -69,6 +84,11 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
      ```
      jupyter lab
      ```
+    - Use venv’s pip directly(no activation needed)
+     ```
+     venv\Scripts\pip install scipy
+     ``` 
+     
      Browser opens. Click "New > Python 3" for a notebook. Test: Type `print("Hi!")` in a cell, hit Shift+Enter.
    - In jupyter notebook `view tab` > `open in jupyter lab` to open the notebook in jupyter lab
    - Close: Ctrl+C in cmd, then "y".
@@ -79,6 +99,7 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
    - Open VS Code. Go to Extensions (Ctrl+Shift+X).
    - Search "Python" (by Microsoft)—install.
    - Search "Jupyter" (by Microsoft)—install.
+   - Create venv and activate it.
    - Install [ipykernel](https://pypi.org/project/ipykernel/) in VScode using command prompt
      ```
      pip install ipykernel
