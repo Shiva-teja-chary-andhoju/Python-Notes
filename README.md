@@ -334,8 +334,9 @@ pip freeze > requirements.txt
 Check Python version:
 ```cmd
 python --version
-```​‌
-
+```
+​‌
+---
 
 ## 📌 Running Python Files from a Shared Drive Using a Virtual Environment (venv)
 
