@@ -119,6 +119,13 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
      ```
      pip install pandas requests
      ```
+     ```
+     python -m pip install --upgrade pip
+     ```
+     If you have multiple Python versions installed, use:
+     ```
+     py -m pip install --upgrade pip
+     ```
      Installs latest compatible versions in your venv.
    - **Check Installed Versions**: List installed libraries and versions:
      ```
@@ -139,6 +146,7 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
      ```
      pip freeze > requirements.txt
      ```
+     
      Reuse later: `pip install -r requirements.txt`.
    - **Check Module Version in Code**: Test in a Jupyter cell or `.py` file:
      ```python
