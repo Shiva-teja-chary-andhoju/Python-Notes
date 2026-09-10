@@ -28,9 +28,17 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
    - Run the .exe file.
    - **Important**: Check "Add python.exe to PATH" at the bottom. This adds Python and pip to your system's PATH variable, making commands work everywhere in Command Prompt.
    - Click "Install Now". Wait for it to finish.
-   - Check: Open Command Prompt (search "cmd" in Start menu). Type:
+   - Check: Open Command Prompt (search "cmd" in Start menu). Type(Check the default Python version):
      ```
      python --version
+     ```
+   - To see all Python versions installed on your Windows laptop:
+     ```
+     py -0p
+     ```
+   - Check a specific version:
+     ```
+     py -3.11 --version
      ```
      See "Python 3.13.7"? Good! If not, restart cmd or manually add the Python executable and Scripts folder to PATH via "Edit the system environment variables" (search in Windows Start menu).
    - Manual PATH fix: Add `C:\Users\<YourUsername>\AppData\Local\Programs\Python\Python313` and
