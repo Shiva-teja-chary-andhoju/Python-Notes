@@ -75,15 +75,27 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
      ```
      deactivate
      ```
+   - Use venv’s pip directly(no activation needed)
+     ```
+     venv\Scripts\pip install scipy
+     ``` 
  
 3. **Install Jupyter Notebook** 
    - Activate the virtual environment first, then install libraries from any folder path in the command prompt.If the venv is activated, pip installs inside that venv, regardless of folder path you are in
-   - With venv active, type:
+   - With venv active, type: (This installs the classic Jupyter Notebook application - Only Jupyter Notebook (lighter, sufficient for most users)
      ```
-     pip install jupyter
+     pip install notebook
      ```
      ```
      pip install jupyterlab
+     ```
+     If you want the newer Jupyter ecosystem (Notebook, Lab, console, etc.), you can install - Meta-package that installs Notebook plus several other Jupyter tools:
+     ```
+     pip install jupyter
+     ```
+     Install Python execution engine (kernel) that actually runs your code.
+     ```
+     pip install ipykernel
      ```
    - Start it:
      ```
@@ -92,17 +104,26 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
      ```
      jupyter lab
      ```
-    - Use venv’s pip directly(no activation needed)
-     ```
-     venv\Scripts\pip install scipy
-     ``` 
-     
      Browser opens. Click "New > Python 3" for a notebook. Test: Type `print("Hi!")` in a cell, hit Shift+Enter.
    - In jupyter notebook `view tab` > `open in jupyter lab` to open the notebook in jupyter lab
-   - Close: Ctrl+C in cmd, then "y".
+     
+   - To stop a running Jupyter Notebook, go to the Command Prompt where it was launched and press:
+     ```
+     Ctrl + C
+     ```
+     You will see:
+     ```
+     Shutdown this notebook server (y/[n])?
+     ```
+     Type:
+     ```
+     y
+     ```
+     
+
    - [Interface tutorial](https://www.youtube.com/watch?v=uclhm_l1cSc)
  
-4. **Install VS Code**
+4. **Jupyter Notebook in VS Code**
    - Download from [code.visualstudio.com](https://code.visualstudio.com/). Run .exe, install.
    - Open VS Code. Go to Extensions (Ctrl+Shift+X).
    - Search "Python" (by Microsoft)—install.
@@ -122,7 +143,7 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
      ```
      Right-click > "Run Python File in Terminal". Works?
  
-5. **Install, Update, Check, and Secure Libraries/Modules**
+5. **Install, Uninstall, Update, Check, and Secure Libraries/Modules**
    - **Install Libraries**: With venv active, use [pip](https://pypi.org/project/pip/) to add libraries from PyPI (e.g., pandas for data, requests for web):
      ```
      pip install pandas requests
@@ -135,6 +156,13 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
      py -m pip install --upgrade pip
      ```
      Installs latest compatible versions in your venv.
+   - **To uninstall any Python library**:
+     ```
+     pip uninstall package_name
+     ```
+     ```
+     pip uninstall pandas
+     ```
    - **Check Installed Versions**: List installed libraries and versions:
      ```
      pip list
@@ -182,7 +210,359 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
        - Example: Fixes a typo or a crash in a specific case.
 
    - **Safety Tips**: Always use venvs to avoid conflicts. Before updating, check library release notes for breaking changes. Update regularly but cautiously to stay secure and current.
- 
+---
+
+## 📌 Running Python Files from a Shared Drive Using a Virtual Environment (venv)
+
+> **Goal:** Run Python scripts and Jupyter notebooks stored on a network/shared drive while using your local Python virtual environment and installed libraries.
+>
+> **Philosophy:** Keep Python, libraries, and Jupyter installed locally on your laptop. Store only code and data on the shared drive.
+> 
+> ✅ Jupyter or VS Code can open files directly from the shared drive.
+
+---
+
+### ✅ Recommended Architecture
+
+```text
+Laptop (Local)
+│
+├── Python 3.11
+├── Virtual Environment (myenv)
+├── Installed Libraries
+│   ├── pandas
+│   ├── numpy
+│   ├── openpyxl
+│   ├── notebook
+│   └── ipykernel
+│
+└── (Command Prompt) Jupyter Notebook / VS Code
+         │
+         ▼
+Shared Drive (A:, S:, \\server\share)
+│
+├── project1
+│   ├── script.py
+│   ├── notebook.ipynb
+│   └── data.xlsx
+│
+└── project2
+```
+
+
+
+---
+Connect a shared folder (for example `\\server\sharedfolder`) to a drive letter such as `A:`, `S:`, or `Z:` so you can access it like a normal drive in File Explorer, Command Prompt, VS Code, and Jupyter.
+
+### Method 1: Run Python Files from Shared Drive Using Command Prompt
+
+#### 1. Activate the Virtual Environment
+
+
+---
+
+#### 2. Navigate to the Shared Drive
+
+Example:
+```cmd
+cd /d A:\
+```
+or
+
+```cmd
+cd A:\
+```
+
+or
+
+```cmd
+cd "A:\Python Projects"
+```
+
+
+
+Check files:
+
+```cmd
+dir
+```
+
+---
+
+#### 3. Run the Python File
+
+```cmd
+python script.py
+```
+
+Example:
+
+```cmd
+python ESG_Reporting.py
+```
+
+Python will use:
+
+- Current virtual environment
+- Installed packages inside the virtual environment
+
+even though the Python file exists on the shared drive.
+
+---
+
+#### Run Without Navigating to the Folder
+
+You can run directly:
+
+```cmd
+python "A:\Python Projects\ESG_Reporting.py"
+```
+
+
+---
+
+### Method 2: Open Shared Drive Folder in VS Code
+
+#### 1. Activate Environment
+
+
+#### 2. Open VS Code
+
+```cmd
+code .
+```
+
+or manually launch VS Code.
+
+---
+
+#### 3. Open Shared Drive Folder
+
+```text
+File
+ └─ Open Folder
+      └─ Select Shared Drive Folder
+```
+
+Example:
+
+```text
+A:\Python Projects
+```
+
+---
+
+#### 4. Select the Virtual Environment
+
+Press:
+
+```text
+Ctrl + Shift + P
+```
+
+Type:
+
+```text
+Python: Select Interpreter
+```
+
+Select:
+
+```text
+C:\Users\<username>\Desktop\AZ Python Environment\myenv\Scripts\python.exe
+```
+
+---
+
+#### 5. Run Python File
+
+Open:
+
+```text
+script.py
+```
+
+Click:
+
+```text
+Run Python File
+```
+
+or
+
+```text
+F5
+```
+
+VS Code will use the selected virtual environment.
+
+---
+
+### Method 3: Launch Jupyter Notebook in Shared Drive
+
+
+Activate venv:
+
+Launch Jupyter from the shared drive:
+
+```cmd
+A:
+cd "A:\Python Projects"
+
+jupyter notebook
+```
+
+or
+
+```cmd
+jupyter lab
+```
+
+---
+
+### Result
+
+Jupyter opens and shows:
+
+```text
+A:\Python Projects
+```
+
+You can directly open:
+
+```text
+project.ipynb
+```
+
+or create new notebooks in the shared drive.
+
+---
+
+### Method 4: Launch Jupyter from Anywhere
+
+You do not need to be inside the shared folder.
+
+Example:
+
+```cmd
+jupyter notebook --notebook-dir="A:\Python Projects"
+```
+
+or
+
+```cmd
+jupyter lab --notebook-dir="A:\Python Projects"
+```
+
+Jupyter starts directly in that folder.
+
+---
+
+### Register Your Virtual Environment as a Jupyter Kernel
+
+Install:
+
+```cmd
+pip install ipykernel
+```
+
+Register:
+
+```cmd
+python -m ipykernel install --user --name py311 --display-name "Python 3.11"
+```
+
+Verify:
+
+```cmd
+jupyter kernelspec list
+```
+
+Example:
+
+```text
+Available kernels:
+
+python3
+py311
+```
+
+---
+
+### Select Kernel Inside Notebook
+
+In Jupyter:
+
+```text
+Kernel
+ └─ Change Kernel
+      └─ Python 3.11
+```
+
+In VS Code:
+
+```text
+Top Right Corner
+ └─ Select Kernel
+      └─ Python 3.11
+```
+
+This ensures code runs using your venv libraries.
+
+---
+
+### Running Files When Drive Letter Is Not Available
+
+Sometimes a link opens but the drive letter is not mounted.
+
+Check mapped drives:
+
+```cmd
+net use
+```
+
+Example output:
+
+```text
+Status       Local     Remote
+
+OK           A:        \\server\share
+```
+
+If the drive is missing:
+
+```cmd
+net use A: \\server\share
+```
+
+or access the UNC path directly:
+
+```cmd
+\\server\share\Python Projects
+```
+
+---
+
+### Check Which Python Is Running
+
+#### Python Version
+
+```cmd
+python --version
+```
+
+#### Python Location
+
+```cmd
+where python
+```
+
+Expected:
+
+```text
+C:\Users\<username>\Desktop\AZ Python Environment\myenv\Scripts\python.exe
+```
+
 ---
  
 ## 📌 Step 2: Master Core Python Fundamentals
