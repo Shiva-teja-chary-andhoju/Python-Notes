@@ -511,6 +511,8 @@ Select:
 C:\Users\<username>\Desktop\AZ Python Environment\myenv\Scripts\python.exe
 ```
 
+
+
 ---
 
 #### 5. Run Python File
@@ -576,6 +578,33 @@ project.ipynb
 or create new notebooks in the shared drive.
 
 ---
+
+
+### Jupyter Notebook Slow on Share Drive?
+
+If Jupyter Notebook is slow when accessed through the web interface and opening files from a shared drive, use **VS Code** instead.
+
+### Steps
+
+1. Open VS Code and Open Command Prompt in VS Code and activate venv.
+2. Navigate to the project folder:
+   ```cmd
+   cd "A:\ProjectFolder"
+   ```
+3. Open python file:
+   ```cmd
+   code file.ipynb
+   ```
+4. Run the `.ipynb` file cells one by one in VS Code by connecting kernel to python of that venv.
+
+### Benefits
+
+- Faster file access
+- Better notebook performance
+- Improved responsiveness
+- Easier navigation of shared drive files
+
+**Recommended:** Keep Python, Jupyter, and your virtual environment on the local machine, and access only the required data files from the shared drive.
 
 ### Method 4: Launch Jupyter from Anywhere
 
