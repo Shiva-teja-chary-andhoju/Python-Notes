@@ -452,13 +452,26 @@ python "A:\Python Projects\ESG_Reporting.py"
 #### 1. Activate Environment
 
 
-#### 2. Open VS Code
+#### 2. Open VS Code and python files
 
 ```cmd
 code .
 ```
 
 or manually launch VS Code.
+
+Open a Python file (.py)
+```cmd
+code myscript.py
+```
+Or with the full path:
+```cmd
+code "Z:\Projects\myscript.py"
+```
+Open a Jupyter Notebook (.ipynb)
+```cmd
+code notebook.ipynb
+```
 
 ---
 
