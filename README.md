@@ -43,7 +43,136 @@ Get Python ready for learning and manage libraries effectively. This keeps proje
      See "Python 3.13.7"? Good! If not, restart cmd or manually add the Python executable and Scripts folder to PATH via "Edit the system environment variables" (search in Windows Start menu).
    - Manual PATH fix: Add `C:\Users\<YourUsername>\AppData\Local\Programs\Python\Python313` and
     `C:\Users\<YourUsername>\AppData\Local\Programs\Python\Python313\Scripts` to PATH.
- 
+
+### Install `requirements.txt` for a Specific Global Python Version
+
+If multiple Python versions are installed (e.g., Python 3.11 and Python 3.13), use the Python launcher (`py`) to install packages into the required Python version.
+
+### Check Installed Python Versions
+
+```cmd
+py -0
+```
+
+Example:
+
+```text
+-V:3.13 *    Python 3.13
+-V:3.11      Python 3.11
+```
+
+### Install Requirements into Python 3.11
+
+If the file is located in the Downloads folder:
+
+```cmd
+py -3.11 -m pip install -r "%USERPROFILE%\Downloads\requirements.txt"
+```
+
+### Verify Installation
+
+```cmd
+py -3.11 -m pip list
+```
+
+or
+
+```cmd
+py -3.11 -m pip show pandas
+```
+
+### Change the Default Python Version in Windows
+
+### Check Installed Python Versions
+
+```cmd
+py -0
+```
+
+Example:
+
+```text
+-V:3.13 *    Python 3.13
+-V:3.11      Python 3.11
+```
+
+`*` indicates the current default Python version used by the `py` launcher.
+
+---
+
+### Option 1: Use a Specific Python Version (Recommended)
+
+Instead of changing the system default, explicitly use the required version:
+
+```cmd
+py -3.11 script.py
+```
+
+```cmd
+py -3.11 -m pip install pandas
+```
+
+---
+
+### Option 2: Change the Default Python in VS Code
+
+1. Press `Ctrl + Shift + P`
+2. Select **Python: Select Interpreter**
+3. Choose **Python 3.11**
+4. Restart the terminal/notebook kernel.
+5. For notebooks, select the **Python 3.11** kernel.
+   
+VS Code will use Python 3.11 for that workspace.
+
+> **Note:** You do not need to navigate to the Python installation folder. Run the command from any location or provide the full path to `requirements.txt`.
+
+
+---
+
+### Option 3: Change the System Default Python
+
+Move Python 3.11 ahead of Python 3.13 in the Windows PATH:
+
+1. Open **Environment Variables**
+2. Edit the **Path** variable.
+3. Move the Python 3.11 entries above Python 3.13 entries:
+
+```text
+C:\Users\<username>\AppData\Local\Programs\Python\Python311\
+C:\Users\<username>\AppData\Local\Programs\Python\Python311\Scripts\
+```
+
+4. Open a new terminal and verify:
+
+```cmd
+python --version
+```
+
+Expected:
+
+```text
+Python 3.11.x
+```
+
+---
+
+### Verify Which Python Is Being Used
+
+```cmd
+where python
+```
+
+```cmd
+python --version
+```
+
+```cmd
+py --version
+```
+
+> **Note:** For systems with multiple Python versions, it is safer to use `py -3.11` rather than changing the global default Python.
+
+
 2. **Set Up Virtual Environment**
    - In Command Prompt, go to your project folder (e.g., `cd Desktop\MyPython`—create it if needed).
    - Create venv:
