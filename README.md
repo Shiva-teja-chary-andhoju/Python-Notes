@@ -668,6 +668,114 @@ VS Code will use the selected virtual environment.
 
 ---
 
+
+### Using VS Code with a Virtual Environment and Files on a Network Drive
+
+### Scenario
+
+- Python and libraries are installed in a local virtual environment (`venv`).
+- Code, notebooks, input files, and output files are stored on a network drive.
+- The project uses relative paths and expects a specific folder structure.
+
+### Steps
+
+1. Map the network location to a drive letter (e.g., `A:` or `Z:`).
+
+2. Open the **project folder** from the mapped drive in VS Code.
+
+   Example:
+
+   ```text
+   A:\Automatic Data Preparation\Degree Days Processing
+   ```
+
+3. Open a terminal in VS Code.
+
+4. Activate the virtual environment:
+
+   ```cmd
+   "C:\path\to\myenv311\Scripts\activate.bat"
+   ```
+
+   Verify:
+
+   ```cmd
+   where python
+   python --version
+   ```
+
+5. For Python scripts, run them from the VS Code terminal after activating the virtual environment.
+
+6. For Jupyter notebooks (`.ipynb`):
+   - Install the Jupyter and Python extensions in VS Code.
+   - Click **Select Kernel** in the notebook.
+   - Choose the virtual environment (`myenv311`) interpreter.
+
+7. Verify the notebook is running from the correct project folder:
+
+   ```python
+   import os
+
+   print(os.getcwd())
+   ```
+
+   The working directory should be the project folder on the mapped drive.
+
+
+### Using VS Code with Global Python and Files on a Network Drive
+
+### Scenario
+
+- Python and libraries are installed in a global Python installation (e.g., Python 3.11).
+- Code, notebooks, input files, and output files are stored on a network drive.
+- The project uses relative paths and expects a specific folder structure.
+
+### Steps
+
+1. Map the network location to a drive letter (e.g., `A:` or `Z:`).
+
+2. Open the **project folder** from the mapped drive in VS Code.
+
+   Example:
+
+   ```text
+   A:\Automatic Data Preparation\Degree Days Processing
+   ```
+
+3. Select the required Python version in VS Code:
+
+   - Press `Ctrl + Shift + P`
+   - Select **Python: Select Interpreter**
+   - Choose **Python 3.11**
+
+4. Verify the selected Python version:
+
+   ```cmd
+   where python
+   python --version
+   ```
+
+
+5. For Python scripts, run them directly from the VS Code terminal.
+
+6. For Jupyter notebooks (`.ipynb`):
+   - Install the **Python** and **Jupyter** VS Code extensions.
+   - Click **Select Kernel** in the notebook.
+   - Choose the **Python 3.11** interpreter.
+
+7. Verify the notebook is running from the correct project folder:
+
+   ```python
+   import os
+
+   print(os.getcwd())
+   ```
+
+   The working directory should be the project folder on the mapped drive.
+
+
+
+
 ### Method 3: Launch Jupyter Notebook in Shared Drive
 
 
