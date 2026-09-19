@@ -774,6 +774,107 @@ VS Code will use the selected virtual environment.
    The working directory should be the project folder on the mapped drive.
 
 
+### Virtual Environment Not Appearing in VS Code Jupyter Kernel List
+
+If a virtual environment (`venv`) is activated but does not appear in the Jupyter kernel list in VS Code, check the following:
+
+### 1. Verify `ipykernel` is Installed in the Virtual Environment
+
+Activate the virtual environment and run:
+
+```cmd
+python -m pip show ipykernel
+```
+
+If nothing is returned, install it:
+
+```cmd
+python -m pip install ipykernel
+```
+
+---
+
+### 2. Register the Virtual Environment as a Jupyter Kernel
+
+After activating the virtual environment:
+
+```cmd
+python -m ipykernel install --user --name myenv311 --display-name "Python (myenv311)"
+```
+
+Restart VS Code and reopen the notebook.
+
+Click **Select Kernel** and verify that the following kernel is available:
+
+```text
+Python (myenv311)
+```
+
+---
+
+### 3. Verify VS Code is Using the Correct Virtual Environment
+
+Run the following command in the activated terminal:
+
+```cmd
+python -c "import sys; print(sys.executable)"
+```
+
+The output should point to the virtual environment executable:
+
+```text
+...\myenv311\Scripts\python.exe
+```
+
+---
+
+### 4. Verify Required VS Code Extensions
+
+Ensure the following extensions are installed:
+
+- Python (Microsoft)
+- Jupyter (Microsoft)
+
+---
+
+### 5. Reload VS Code
+
+Press:
+
+```text
+Ctrl + Shift + P
+```
+
+Run:
+
+```text
+Developer: Reload Window
+```
+
+Then reopen the notebook.
+
+---
+
+### 6. Check Available Jupyter Kernels
+
+Run:
+
+```cmd
+jupyter kernelspec list
+```
+
+Expected output:
+
+```text
+python3
+myenv311
+```
+
+If `myenv311` is not listed, the kernel registration did not succeed.
+
+---
+
+
 
 
 ### Method 3: Launch Jupyter Notebook in Shared Drive
