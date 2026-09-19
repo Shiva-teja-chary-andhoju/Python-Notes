@@ -874,8 +874,37 @@ If `myenv311` is not listed, the kernel registration did not succeed.
 
 ---
 
+### Relative Paths with Network Drives
 
+If the code uses relative paths such as:
 
+```python
+df.to_excel(os.path.abspath(BASE_FOLDER_PATH + '/../../Data Structure/Input Tables/footfall_data.xlsx'))
+```
+
+and the project is opened from a mapped network drive (e.g., `Z:`), the path resolution starts from the project folder (`BASE_FOLDER_PATH`).
+
+Example:
+
+```text
+Z:\Data Structure\Automatic Data Preparation\Degree Days Processing
+```
+
+Relative path:
+
+```text
+../../Data Structure/Input Tables/footfall_data.xlsx
+```
+
+Resolves to:
+
+```text
+Z:\Data Structure\Input Tables\footfall_data.xlsx
+```
+
+> **Note:** Always open the project folder from the mapped network drive in VS Code. Relative paths are resolved from the project folder, not from the Python installation or virtual environment location.
+
+---
 
 ### Method 3: Launch Jupyter Notebook in Shared Drive
 
