@@ -810,7 +810,289 @@ Click **Select Kernel** and verify that the following kernel is available:
 Python (myenv311)
 ```
 
+
+### Jupyter Kernel Management & VS Code Troubleshooting
+
+### Unregister (Remove) a Jupyter Kernel
+
+If you registered a kernel using:
+
+```cmd
+python -m ipykernel install --user --name myenv311 --display-name "Python (myenv311)"
+```
+
+Remove it with:
+
+```cmd
+jupyter kernelspec uninstall myenv311
+```
+
+or
+
+```cmd
+python -m jupyter kernelspec uninstall myenv311
+```
+
+You will see:
+
+```text
+Kernel specs to remove:
+  myenv311      C:\Users\<username>\AppData\Roaming\jupyter\kernels\myenv311
+
+Remove 1 kernel specs [y/N\]:
+```
+
+Type:
+
+```text
+y
+```
+
+and press Enter.
+
 ---
+
+### List All Registered Kernels
+
+```cmd
+jupyter kernelspec list
+```
+
+Example:
+
+```text
+Available kernels:
+  python3     ...
+  myenv311    ...
+  myenv313    ...
+```
+
+Remove a specific kernel:
+
+```cmd
+jupyter kernelspec uninstall myenv311
+```
+
+---
+
+### Remove Kernel Registration Only
+
+Uninstalling the kernel:
+
+```cmd
+jupyter kernelspec uninstall myenv311
+```
+
+✅ Removes the kernel from Jupyter and VS Code.
+
+✅ Does **not** delete the virtual environment.
+
+---
+
+### Delete the Virtual Environment (Optional)
+
+After unregistering the kernel:
+
+```cmd
+rmdir /s /q myenv311
+```
+
+(Command Prompt)
+
+This permanently deletes the virtual environment folder.
+
+---
+
+### Refresh VS Code Kernel List
+
+After unregistering a kernel:
+
+1. Press `Ctrl + Shift + P`
+2. Run:
+
+```text
+Developer: Reload Window
+```
+
+This refreshes the available kernel list.
+
+---
+
+### Reinstall Jupyter Packages in a Virtual Environment
+
+Activate the virtual environment first.
+
+Uninstall:
+
+```cmd
+pip uninstall ipykernel jupyter-client pyzmq tornado traitlets -y
+```
+
+Install again:
+
+```cmd
+pip install ipykernel jupyter-client pyzmq tornado traitlets
+```
+
+Verify:
+
+```cmd
+python -m ipykernel --version
+```
+
+---
+
+### Clear Jupyter Runtime Files
+
+Close VS Code.
+
+Navigate to:
+
+```text
+C:\Users\AShivatej\AppData\Roaming\jupyter\runtime
+```
+
+Delete all files inside the `runtime` folder.
+
+Open VS Code again.
+
+---
+
+### Diagnostic Commands
+
+Run the following from the activated virtual environment:
+
+```cmd
+python -m ipykernel --version
+pip show ipykernel
+pip show pyzmq
+jupyter --paths
+```
+
+These outputs help identify whether the issue is related to:
+
+1. Broken virtual environment
+2. Corrupted `ipykernel` installation
+3. `pyzmq` issues
+4. Corporate network/security restrictions
+
+---
+
+### "Failed to Connect to Kernel" Troubleshooting
+
+This usually means:
+
+> VS Code starts the kernel but cannot communicate with it.
+
+---
+
+### 1. Verify pyzmq
+
+Check:
+
+```cmd
+pip show pyzmq
+```
+
+If missing or corrupted:
+
+```cmd
+pip install --force-reinstall pyzmq
+```
+
+---
+
+### 2. Check Firewall / Endpoint Security
+
+Jupyter uses local host ports for communication.
+
+Test:
+
+```cmd
+jupyter notebook
+```
+
+or
+
+```cmd
+jupyter lab
+```
+
+If a notebook opens successfully in the browser, local networking is working.
+
+---
+
+### 3. Clear VS Code Jupyter Cache
+
+Close VS Code.
+
+Delete files from:
+
+```text
+C:\Users\AShivatej\AppData\Roaming\jupyter\runtime
+```
+
+Also clear:
+
+```text
+C:\Users\AShivatej\AppData\Roaming\Code\User\globalStorage\ms-toolsai.jupyter
+```
+
+Common contents:
+
+```text
+version-xxxx
+cache
+mementos
+settings
+```
+
+Delete everything inside the folder.
+
+Reopen VS Code.
+
+---
+
+### 4. Test Kernel Outside VS Code
+
+Activate the virtual environment and run:
+
+```cmd
+jupyter notebook
+```
+
+### Result Analysis
+
+**If it opens successfully:**
+
+- Jupyter is working.
+- The issue is specific to VS Code.
+
+**If it throws an error:**
+
+- The problem is in the virtual environment or Jupyter installation.
+- Review the error message for the root cause.
+
+---
+
+### Quick Troubleshooting Checklist
+
+```text
+☐ Verify kernel is registered
+☐ Verify kernel appears in jupyter kernelspec list
+☐ Verify ipykernel is installed
+☐ Verify pyzmq is installed
+☐ Run jupyter notebook outside VS Code
+☐ Clear Jupyter runtime cache
+☐ Clear VS Code Jupyter cache
+☐ Reload VS Code window
+☐ Reinstall ipykernel and pyzmq if needed
+☐ Unregister and re-register the kernel if required
+```
+
+
+
+
 
 ### 3. Verify VS Code is Using the Correct Virtual Environment
 
@@ -826,7 +1108,6 @@ The output should point to the virtual environment executable:
 ...\myenv311\Scripts\python.exe
 ```
 
----
 
 ### 4. Verify Required VS Code Extensions
 
